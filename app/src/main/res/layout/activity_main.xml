@@ -5,35 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textAppTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="5"
+        android:gravity="center"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:gravity="center"
         android:textSize="34sp" />
 
-
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textLookingForZip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="bottom|center"
-        android:text="Where are you looking for a restaurant?" />
+        android:text="Enter your Zip Code:" />
 
     <EditText
-        android:id="@+id/plain_text_input"
+        android:id="@+id/editTextZipCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:inputType="text"
+        android:inputType="number"
+        android:maxLength="5"
         android:minHeight="48dp"
-        android:text="Enter zip code"
         android:textAlignment="center" />
 
     <TextView
@@ -48,6 +49,7 @@
         android:id="@+id/spinnerFoodTypeDropdown"
         android:layout_width="match_parent"
         android:layout_weight="1"
+        android:gravity="center"
         android:layout_height="wrap_content" />
 
     <TextView
