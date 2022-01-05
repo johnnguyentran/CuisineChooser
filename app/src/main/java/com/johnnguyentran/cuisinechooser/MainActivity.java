@@ -2,8 +2,10 @@ package com.johnnguyentran.cuisinechooser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -20,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Get the editText from the .xml
-        EditText editTextZipCode = (EditText)findViewById(R.id.editTextZipCode);
+        EditText editTextZipCode = getZipCode();
         editTextZipCode.setInputType(InputType.TYPE_CLASS_NUMBER);
 
 
         // Get the spinner from the .xml
-        Spinner spinnerFoodType = (Spinner)findViewById(R.id.spinnerFoodTypeDropdown);
+        Spinner spinnerFoodType = getFoodType();
         // Create the list of items
-        String[] items = new String[]{"No preference", "Chinese", "Mexican", "Italian",
+        String[] items = new String[]{"No preference", "American", "Chinese", "Mexican", "Italian",
                 "Japanese", "Thai", "Indian", "Mediterranean"};
         // Create an adapter to display items
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
@@ -36,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Get the SeekBar from the .xml
-        SeekBar seekBarPricing = (SeekBar)findViewById(R.id.seekBarPricing);
-        TextView textSeekBarPricing = (TextView)findViewById(R.id.textSeekBarPricing);
+        SeekBar seekBarPricing = getSeekBarPricing();
+        TextView textSeekBarPricing = getPricing();
         // Set maximum of 5 options ($ to $$$$$)
         seekBarPricing.setMax(4);
 
@@ -70,7 +72,30 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    public void onStartChooseCuisineActivity(View view){
+        Intent intent = new Intent(this, ChooseCuisineActivity.class);
 
+        intent.putExtra("keyZipCode", getZipCode().getText());
+        intent.putExtra("keyTypeFood", getFoodType().getSelectedItem().toString());
+        intent.putExtra("keyPricing", getPricing().getText());
 
+        startActivity(intent);
+    }
+
+    private EditText getZipCode(){
+        return (EditText)findViewById(R.id.editTextZipCode);
+    }
+
+    private Spinner getFoodType(){
+        return (Spinner)findViewById(R.id.spinnerFoodTypeDropdown);
+    }
+
+    private TextView getPricing(){
+        return (TextView)findViewById(R.id.textSeekBarPricing);
+    }
+
+    private SeekBar getSeekBarPricing(){
+        return (SeekBar)findViewById(R.id.seekBarPricing);
+    }
 
 }
